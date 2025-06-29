@@ -36,9 +36,9 @@ graph = StateGraph(state_schema=State)
 graph.add_edge(START, "model")
 graph.add_node("model", model)
 
+memory = MemorySaver()
 # Send response to app.py
 def send_answer(user_id: str, query: str, language: str, name: str):
-    memory = MemorySaver()
 
     app = graph.compile(checkpointer=memory)
     config = {"configurable": {"thread_id": user_id}}
